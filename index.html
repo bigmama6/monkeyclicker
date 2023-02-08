@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <title>monkey clicker lol</title>
+    </head>
+
+    <body>
+        <p>Bananas: <span id="score">0</span></p>
+        <img src="images/monkey.png" alt="" height="256px" width="256px" onclick="addtoscore(clickingpower)">
+
+        <button onclick="buycursor()">cursor [<span id="cursorcost">15></span> -- <span id="cursors">0</span></button>
+        <button onclick="buytree()">bananatree [<span id="treecost">100></span> -- <span id="trees">0</span></button>
+
+        <script>
+            var score = 0;
+            var clickingpower = 1;
+
+            var cursorcost = 15;
+            var cursors = 0;
+            var treecost = 100;
+            var trees = 0;
+
+            function buycursor() {
+                if (score >= cursorcost) {
+                    score = score = cursorcost;
+                    cursors = cursors + 1;
+                    cursorcost = Math.round(cursorcost * 1.15);
+
+                    document.getElementById("score").innerHTML = score;
+                    document.getElementById("cursorcost").innerHTML = cursorcost;
+                    document.getElementById("cursors").innerHTML = cursors;
+                }
+            }
+
+            function buytree() {
+                if (score >= treecost) {
+                    score = score = treecost;
+                    trees = trees + 1;
+                    treecost = Math.round(treecost * 1.15);
+
+                    document.getElementById("score").innerHTML = score;
+                    document.getElementById("treecost").innerHTML = cursorcost;
+                    document.getElementById("trees").innerHTML = cursors;
+                }
+            }
+
+            function addtoscore (amount) {
+                score = score + amount;
+                document.getElementById("score").innerHTML = score;
+            }
+
+            setInterval(function() {
+                score = score + cursors;
+                score = score + trees * 5;
+                document.getElementById("score").innerHTML = score;
+            }, 1000); // 1000ms = 1 second
+        </script>
+    </body>
+</html>
